@@ -4,8 +4,8 @@ const WebSocket = require("ws");
 const OpCodes = require("../../config/OpCodes");
 const GatewayIntents = require("../../gateway/GatewayIntents");
 const ClientUser = require("../../structures/ClientUser");
-const ReadyHandler = require("../../handlers/client/ReadyHandler");
-const MessageCreateHandler = require("../../handlers/guild/MessageCreateHandler");
+const ReadyEventHandler = require("../../handlers/client/ReadyEventHandler");
+const MessageCreateEventHandler = require("../../handlers/guild/MessageCreateEventHandler");
 
 /**
  * The WebSocket manager for this client.
@@ -51,10 +51,10 @@ module.exports = class WebSocketManager extends EventEmitter {
           case OpCodes.DISPATCH:
             switch (t) {
               case "READY":
-                ReadyHandler(this.client, d);
+                ReadyEventHandler(this.client, d);
                 break;
               case "MESSAGE_CREATE":
-                MessageCreateHandler(this.client, d);
+                MessageCreateEventHandler(this.client, d);
                 break;
             }
             break;
