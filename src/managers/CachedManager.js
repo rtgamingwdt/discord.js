@@ -1,4 +1,4 @@
-const Collection = require("../client/utils/Collection");
+const Collection = require("../utils/Collection");
 
 module.exports = class CachedManager {
   constructor(client, maxLength = 225) {

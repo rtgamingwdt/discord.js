@@ -1,6 +1,6 @@
 "use-strict";
 
-const Collection = require("../client/utils/Collection");
+const Collection = require("../utils/Collection");
 const Guild = require("./Guild");
 const Role = require("./Role");
 const User = require("./User");
