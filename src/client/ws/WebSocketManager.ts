@@ -1,11 +1,12 @@
 import EventEmitter from "events";
-import GatewayConfig from "../../config/GatewayConfig";
+import Config from "../../config/Config";
 import WebSocket from "ws";
 import OpCodes from "../../config/OpCodes";
 import GatewayIntents from "../../config/GatewayIntents";
 import DiscordError from "../../utils/DiscordError";
 import Client from "../Client";
 import ReadyEventHandler from "../../handlers/client/ReadyEventHandler";
+import MessageCreateEventHandler from "../../handlers/guild/MessageCreateEventHandler";
 
 /**
  * The WebSocket manager for this client.
@@ -27,7 +28,7 @@ export default class WebSocketManager extends EventEmitter {
     */
     public async connect() {
         try {
-            const res = await fetch(GatewayConfig.GATEWAY_URL);
+            const res = await fetch(Config.GATEWAY_URL);
             const data = await res.json();
 
             this.gateway = data.url;
@@ -51,6 +52,9 @@ export default class WebSocketManager extends EventEmitter {
                         switch (t) {
                             case "READY":
                                 ReadyEventHandler(this.client, d);
+                                break;
+                            case "MESSAGE_CREATE":
+                                MessageCreateEventHandler(this.client, d);
                                 break;
                         }
                         break;

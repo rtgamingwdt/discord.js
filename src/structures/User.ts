@@ -1,5 +1,8 @@
+import Client from "../client/Client";
+
 export default class User {
 
+    public client: Client;
     public id: string;
     public username: string;
     public discriminator: string;
@@ -19,6 +22,7 @@ export default class User {
     public avatarDecoration: string | null;
 
     constructor(data: any) {
+        this.client = data.client;
         this.id = data.id;
         this.username = data.username;
         this.discriminator = data.discriminator;
@@ -37,6 +41,8 @@ export default class User {
         this.premiumType = data.premium_type ?? null;
         this.publicFlags = data.public_flags ?? null;
         this.avatarDecoration = data.avatar_decoration ?? null;
+
+        this.client.users.cache.set(this.id, this);
     }
 
     get createdTimestamp() {

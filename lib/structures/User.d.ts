@@ -1,4 +1,6 @@
+import Client from "../client/Client";
 export default class User {
+    client: Client;
     id: string;
     username: string;
     discriminator: string;
