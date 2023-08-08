@@ -1,10 +1,11 @@
+import ClientUser from "../structures/ClientUser";
 import ClientOptions from "../utils/ClientOptions";
 import BaseClient from "./BaseClient";
 import WebSocketManager from "./ws/WebSocketManager";
 
 export default class Client extends BaseClient {
 
-    public user: null;
+    public user: ClientUser | null;
     public token: string | undefined;
     private ws: WebSocketManager;
 

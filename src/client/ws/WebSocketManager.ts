@@ -5,6 +5,7 @@ import OpCodes from "../../config/OpCodes";
 import GatewayIntents from "../../config/GatewayIntents";
 import DiscordError from "../../utils/DiscordError";
 import Client from "../Client";
+import ReadyEventHandler from "../../handlers/client/ReadyEventHandler";
 
 /**
  * The WebSocket manager for this client.
@@ -49,7 +50,7 @@ export default class WebSocketManager extends EventEmitter {
                     case OpCodes.DISPATCH:
                         switch (t) {
                             case "READY":
-                                console.log("Hello World");
+                                ReadyEventHandler(this.client, d);
                                 break;
                         }
                         break;
