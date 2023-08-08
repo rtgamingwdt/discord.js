@@ -17,5 +17,9 @@
   },
   "dependencies": {
     "ws": "^8.13.0"
-  }
+  },
+  "files": [
+    "lib/index.js",
+    "lib/index.d.ts"
+  ]
 }
