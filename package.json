@@ -1,6 +1,6 @@
 {
-  "name": "discord.js",
-  "version": "1.0.0",
+  "name": "@rtgamingwdt/discord.js",
+  "version": "0.0.1",
   "main": "lib/index",
   "typings": "lib/index",
   "scripts": {
