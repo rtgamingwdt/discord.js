@@ -1,5 +1,6 @@
 import Config from "../config/Config";
 import BaseChannel from "./BaseChannel";
+import MessageEmbed from "./MessageEmbed";
 
 export default class TextChannel extends BaseChannel {
     public topic: string | undefined;
@@ -21,7 +22,7 @@ export default class TextChannel extends BaseChannel {
         this.permissions = data.permissions ?? undefined;
     }
 
-    public async send(content: string) {
+    public async send(options: string | { content: string, embeds?: MessageEmbed[] }) {
         fetch(`${Config.API_URL}/channels/${this.id}/messages`, {
             method: "POST",
             headers: {
@@ -29,7 +30,8 @@ export default class TextChannel extends BaseChannel {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                content,
+                content: typeof options === "string" ? options : options.content,
+                embeds: typeof options === "string" ? [] : options.embeds?.map((embed) => embed.toJSON())
             }),
         });
     }

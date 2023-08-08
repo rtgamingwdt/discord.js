@@ -2,6 +2,7 @@ import Client from "../client/Client";
 import Config from "../config/Config";
 import Collection from "../utils/Collection";
 import Guild from "./Guild";
+import MessageEmbed from "./MessageEmbed";
 import TextChannel from "./TextChannel";
 import User from "./User";
 
@@ -59,7 +60,7 @@ export default class Message {
         } else this.guild = null;
     }
 
-    public async reply(content: string) {
+    public async reply(options: string | { content: string, embeds?: MessageEmbed[] }) {
         fetch(`${Config.API_URL}/channels/${this.channelId}/messages`, {
             method: "POST",
             headers: {
@@ -70,7 +71,8 @@ export default class Message {
                 message_reference: {
                     message_id: this.id,
                 },
-                content,
+                content: typeof options === "string" ? options : options.content,
+                embeds: typeof options === "string" ? [] : options.embeds?.map((embed) => embed.toJSON()),
             }),
         });
     }

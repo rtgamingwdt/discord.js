@@ -14,6 +14,7 @@ import BaseChannel from "./structures/BaseChannel";
 import ClientUser from "./structures/ClientUser";
 import Guild from "./structures/Guild";
 import Message from "./structures/Message";
+import MessageEmbed from "./structures/MessageEmbed";
 import TextChannel from "./structures/TextChannel";
 import User from "./structures/User";
 import ClientEvents from "./utils/ClientEvents";
@@ -36,6 +37,7 @@ export {
     GuildManager,
     Message,
     MessageCreateEventHandler,
+    MessageEmbed,
     OpCodes,
     ReadyEventHandler,
     TextChannel,
